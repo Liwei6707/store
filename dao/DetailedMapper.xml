@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ingen.dao.DetailedMapper">
+	<resultMap id="BaseResultMap" type="cn.ingen.entity.Detailedinformation">
+		<id column="xxId" property="xxId" jdbcType="INTEGER" />
+		<result column="RegisteredCapital" property="RegisteredCapital" jdbcType="VARCHAR" />
+		<result column="DateSetup" property="DateSetup" jdbcType="VARCHAR" />
+		<result column="OperatingState" property="OperatingState" jdbcType="VARCHAR" />
+		<result column="UnifiedSocialCreditCode" property="UnifiedSocialCreditCode" jdbcType="VARCHAR" />
+		<result column="TaxpayerIdentificationNum" property="TaxpayerIdentificationNum" jdbcType="VARCHAR" />
+		<result column="RegistrationNum" property="RegistrationNum" jdbcType="VARCHAR" />
+		<result column="OrganizationCode" property="OrganizationCode" jdbcType="VARCHAR" />
+		<result column="CompanyType" property="CompanyType" jdbcType="VARCHAR" />
+		<result column="StaffSize" property="StaffSize" jdbcType="VARCHAR" />
+		<result column="BusinessTerm" property="BusinessTerm" jdbcType="VARCHAR" />
+		<result column="RegistrationAuthority" property="RegistrationAuthority" jdbcType="VARCHAR" />
+		<result column="ApprovalDate" property="ApprovalDate" jdbcType="VARCHAR" />
+		<result column="EnglishName" property="EnglishName" jdbcType="VARCHAR" />
+		<result column="FormerName" property="FormerName" jdbcType="VARCHAR" />
+		<result column="Area" property="Area" jdbcType="VARCHAR" />
+		<result column="IndustryInvolved" property="IndustryInvolved" jdbcType="VARCHAR" />
+		<result column="Address" property="Address" jdbcType="VARCHAR" />
+		<result column="ScopeOfBusiness" property="ScopeOfBusiness" jdbcType="VARCHAR" />
+	</resultMap>
+
+    <sql id="Base_Column_List">
+		xxId,RegisteredCapital,DateSetup,OperatingState,UnifiedSocialCreditCode,TaxpayerIdentificationNum
+		,RegistrationNum,OrganizationCode,CompanyType,StaffSize,BusinessTerm,RegistrationAuthority,ApprovalDate
+		,EnglishName,FormerName,Area,IndustryInvolved,Address,ScopeOfBusiness
+	</sql>
+   
+    <select id="seleDetailedEnterById" resultMap="BaseResultMap" parameterType="Integer">
+    select
+    <include refid="Base_Column_List" />
+    
+    from detailedinformation
+    where xxId=#{xxId}
+    </select>
+   
+	
+</mapper>

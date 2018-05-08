@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ingen.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="cn.ingen.entity.User">
+		<id column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="userphone" property="userphone" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpwd" property="userpwd" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR"   />
+	    <result column="QQ" property="QQ" jdbcType="VARCHAR"   />
+		<result column="Twitter" property="Twitter" jdbcType="VARCHAR"   />
+		<result column="Intro" property="Intro" jdbcType="VARCHAR"   />
+		<result column="mynote" property="mynote" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		userid,userphone,username,userpwd,email,QQ,Twitter,Intro,mynote
+	</sql>
+	<select id="selectUserAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+	</select>
+	<select id="selectUserByPhone" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where userphone=#{userphone}
+	</select>
+
+	<insert id="insertUser" parameterType="cn.ingen.entity.User">
+		insert into user (
+		<include refid="Base_Column_List" />
+		)
+		values (#{userid,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},#{userpwd,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{QQ,jdbcType=VARCHAR},#{Twitter,jdbcType=VARCHAR},#{Intro,jdbcType=VARCHAR},#{mynote,jdbcType=VARCHAR}
+		
+		
+		)
+	</insert>
+
+	<update id="updateUserById" parameterType="cn.ingen.entity.User">
+		update user
+		set email = #{email},
+		QQ = #{QQ},
+		Twitter= #{Twitter},
+		Intro=#{Intro}
+		where userid = #{userid}
+	</update>
+	
+	
+	<update id="updateUserNote" parameterType="cn.ingen.entity.User" >
+	update user
+	set mynote=#{mynote}
+	where userphone=#{userphone};
+	
+    </update>
+	
+	
+</mapper>

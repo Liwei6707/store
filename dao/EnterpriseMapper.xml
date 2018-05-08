@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ingen.dao.EnterpriseMapper">
+	<resultMap id="BaseResultMap" type="cn.ingen.entity.Enterpriseforeigninvestment">
+		<id column="InvestedEnterpriseId" property="InvestedEnterpriseId" jdbcType="INTEGER" />
+		<result column="InvestedEnterpriseName" property="InvestedEnterpriseName" jdbcType="VARCHAR" />
+		<result column="InvestedLegalRepresentative" property="InvestedLegalRepresentative" jdbcType="VARCHAR" />
+		<result column="RegisteredCapital" property="RegisteredCapital" jdbcType="VARCHAR" />
+		<result column="InvestmentProportion" property="InvestmentProportion" jdbcType="VARCHAR" />
+		<result column="DateSetup" property="DateSetup" jdbcType="VARCHAR" />
+		<result column="OperatingState" property="OperatingState" jdbcType="VARCHAR" />
+		<result column="CompanyId" property="CompanyId" jdbcType="INTEGER" />
+	</resultMap>	
+	
+	<sql id="Base_Column_List">
+		InvestedEnterpriseId,InvestedEnterpriseName,InvestedLegalRepresentative,RegisteredCapital,
+		InvestmentProportion,DateSetup,OperatingState,CompanyId
+	</sql>
+	
+	<select id="selectForeignById" resultMap="BaseResultMap"
+		parameterType="int">
+		select
+		<include refid="Base_Column_List" />
+		from enterpriseforeigninvestment
+		where CompanyId=#{CompanyId}
+	</select>
+	
+</mapper>
